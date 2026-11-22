@@ -13,7 +13,7 @@ dependencies = ["numpy>=1.24", "pandas>=2.0", "scipy>=1.10", "scikit-learn>=1.2"
 test = ["pytest>=7"]
 
 [project.scripts]
-gnn-alpha = "gnn_alpha.cli:main"
+gnn-alpha = "gnn_alpha.cli:cli_main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
