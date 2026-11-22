@@ -74,5 +74,10 @@ def main(argv=None):
     return payload
 
 
-if __name__=="__main__":
+def cli_main():
+    """Console entrypoint that reports success without passing a dict to sys.exit."""
     main()
+
+
+if __name__=="__main__":
+    cli_main()
