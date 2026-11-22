@@ -55,6 +55,21 @@ gnn-alpha --csv adjusted_panel.csv --graph-window 40 --neighbors 3 --output mark
 | `test_equity.png` | Illustrative held-out long-short cumulative wealth |
 | `graph_snapshot.png` | Graph using the **last training** sample, not the full series |
 
+## Illustrative synthetic experiment
+
+The default experiment uses 700 synthetic business days, 8 assets, 40-day graph windows, three neighbors, 16 neural training epochs, seed 42 and a 60/20/20 chronological target-date split (379 train, 140 validation, 140 test observations after warmup). These results are **not historical market evidence**. The synthetic simulator intentionally includes sector dependence; an improvement here is not evidence of live alpha.
+
+| Method | Test MSE ↓ | Mean daily rank IC ↑ | Illustrative after-cost test return |
+|---|---:|---:|---:|
+| Zero forecast | 0.00060179 | n/a | n/a |
+| Momentum-20 | 0.00059862 | 0.0415 | +19.04% |
+| Ridge | 0.00055596 | 0.0646 | +21.94% |
+| Node MLP | 0.00056351 | 0.0663 | +26.70% |
+| GCN | **0.00054130** | 0.1085 | +35.53% |
+| GAT | 0.00056530 | **0.1104** | +36.82% |
+
+In this one simulated run, GCN has the lowest test MSE, while GAT has the highest test rank IC and modeled long-short return. The results can change with simulation seed, training budget, market regime, costs and dataset composition; they **do not establish a significant or executable trading advantage**.
+
 ## Research methodology and leakage audit
 
 1. At decision close `t`, observe adjusted prices through `t` and calculate features using historical returns only.
